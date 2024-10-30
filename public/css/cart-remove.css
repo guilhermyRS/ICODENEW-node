@@ -1,0 +1,30 @@
+
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+
+}
+
+.change .bar1 {
+    transform: translate(0, 8px) rotate(-45deg);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    transform: translate(0, -8px) rotate(45deg);
+}
+
+.remove-item {
+    transition: all 0.3s ease;
+}
+
+.remove-item:hover {
+    color: #EF4444;
+}

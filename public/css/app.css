@@ -1,5 +1,10 @@
 @import "./navbar.css";
 @import "./sidebar-auth.css";
+@import "./aboutus.css";
+@import "./footer.css";
+@import "./animation.css";
+@import "./cart-remove.css";
+
 
 
 @tailwind base;
