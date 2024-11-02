@@ -13,7 +13,7 @@ router.get("/register", (req, res) => {
     res.render("components/forms/register");
 });
 
-router.get("/shop", (req, res) => {
+router.get("/loja", (req, res) => {
     res.render("shop");
 });
 
