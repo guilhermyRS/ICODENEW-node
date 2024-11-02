@@ -13,9 +13,91 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../css/cart-remove.css">
+    <style>
+        .product-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px 60px;
+        }
+    
+        .carousel-container {
+            overflow: hidden;
+        }
+    
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+    
+        .carousel-item {
+            flex: 0 0 50%; /* Ocupa 50% da largura em telas menores */
+            padding: 0 8px;
+            min-width: 50%; /* Ocupa 50% da largura em telas menores */
+        }
+    
+        /* Ajustes de responsividade */
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 50.33%; /* Ocupa 33.33% da largura em tablets */
+                min-width: 50.33%;
+            }
+        }
+    
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 20%; /* Ocupa 20% da largura em desktops */
+                min-width: 20%;
+            }
+        }
+    
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            height: 100%;
+        }
+    
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+    
+        .carousel-button.prev {
+            left: 0;
+        }
+    
+        .carousel-button.next {
+            right: 0;
+        }
+    
+        .carousel-button:hover {
+            background: #f8f9fa;
+        }
+    </style>
+    
 </head>
 
-<body>
+<body class="bg-gray-900">
     <nav class="navbar-bg p-4 flex justify-between items-center fixed top-0 left-0 right-0 z-30 h-16">
         <div class="flex items-center">
             <button id="toggleSidebar" class="text-white focus:outline-none mr-2 relative">
@@ -117,48 +199,208 @@
 
     </nav>
 
-    <div class="container mx-auto mt-20 p-4 flex justify-center space-x-4">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden w-64">
-            <a href="product-overview.html?id=1" class="block">
-                <img src="https://via.placeholder.com/300x200" alt="Product 1" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">Product 1</h3>
-                    <p class="text-gray-600">$19.99</p>
+   
+    <div class="product-carousel bg-white ">
+    
+        <h2 class="text-xl font-medium mb-4 flex justify-between items-center">
+            Mais vendidos da semana em Árvores e Enfeites de Natal
+            <a href="#" class="text-blue-500 text-sm">Ir para Mais vendidos</a>
+        </h2>
+
+        <button class="carousel-button prev">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <!-- Produto 1 -->
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <a href="/view">
+                        <img src="../Img/i12.png" alt="Cortina Led" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Fone Bluetooth TWS i12</p>
+                            <div class="mt-2">
+                                <span class="original-price">R$ 49,90</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="current-price">R$ 48,28</span>
+                                  
+                                </div>
+                                <p class="installments">em 12x R$ 4,68</p>
+                                <p class="free-shipping text-blue-600">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
                 </div>
-            </a>
-            <div class="px-4 pb-4">
-                <button onclick="addToCart({id: 1, name: 'Product 1', price: 19.99, image: 'https://via.placeholder.com/300x200'})" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
+
+                <!-- Produto 2 -->
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="product-card">
+                        <img src="/api/placeholder/300/300" alt="Árvore de Natal" class="product-image">
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-700 line-clamp-2">Árvore De Natal Full 1,80 Metros 834 Galhos</p>
+                            <div class="mt-2">
+                                <div class="current-price">R$ 252,00</div>
+                                <p class="installments">em 12x R$ 24,43</p>
+                                <p class="free-shipping">Frete grátis</p>
+                                <p class="text-xs text-gray-500">por ser sua primeira compra</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- A dicione mais produtos aqui seguindo o mesmo padrão -->
             </div>
         </div>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden w-64">
-            <a href="product-overview.html?id=2" class="block">
-                <img src="https://via.placeholder.com/300x200" alt="Product 2" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">Product 2</h3>
-                    <p class="text-gray-600">$24.99</p>
-                </div>
-            </a>
-            <div class="px-4 pb-4">
-                <button onclick="addToCart({id: 2, name: 'Product 2', price: 24.99, image: 'https://via.placeholder.com/300x200'})" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-    <div id="cartDropdown"
-    class="hidden absolute right-16 top-16 w-72 bg-white rounded-md shadow-lg z-20 transition-all duration-300 opacity-0 transform -translate-y-2">
-    <div class="p-4">
-        <h3 class="text-lg font-semibold mb-2">Meu Carrinho</h3>
-        <div id="cartItems" class="mb-4 max-h-60 overflow-y-auto">
-            <!-- Cart items will be dynamically added here -->
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="font-semibold">Total:</span>
-            <span id="cartTotal">R$0.00</span>
-        </div>
-        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
-            Comprar
+
+        <button class="carousel-button next">
+            <i class="bi bi-chevron-right"></i>
         </button>
     </div>
-</div>
+
 
 
 
@@ -341,9 +583,44 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Implementar a funcionalidade de busca
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            
+            let currentIndex = 0;
+            const itemWidth = 20; // 20% por item
+            const itemsPerView = 5;
+            const maxIndex = items.length - itemsPerView;
+
+            function updateCarousel() {
+                const offset = -currentIndex * itemWidth;
+                track.style.transform = `translateX(${offset}%)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Inicializar carrossel
+            updateCarousel();
+        });
+
+
 </script>
 </body>
 

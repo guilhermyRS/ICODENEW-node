@@ -17,6 +17,8 @@ router.get("/loja", (req, res) => {
     res.render("shop");
 });
 
-
+router.get("/view", (req, res) => {
+    res.render("view-product");
+});
 
 module.exports = router;

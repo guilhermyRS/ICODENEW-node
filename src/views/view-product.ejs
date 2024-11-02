@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fone TWS i12</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/css/output.css" rel="stylesheet">
+    <script src="/js/bundle.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body class="bg-gray-100">
+    <nav class="navbar-bg p-4 flex justify-between items-center fixed top-0 left-0 right-0 z-30 h-16">
+        <div class="flex items-center">
+            <button id="toggleSidebar" class="text-white focus:outline-none mr-2 relative">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </button>
+            <img src="../Img/logo-icodenew.png" alt="" class="h-full max-h-full object-contain hidden sm:block" />
+            <!-- Esconde a logo em telas menores -->
+        </div>
+        <div id="input_group" class="flex items-center bg-neutral-800 rounded w-1/2 sm:w-2/3 md:w-1/3 lg:w-1/4">
+            <!-- Ajusta a largura da barra de busca em telas menores -->
+            <input type="search" id="search" class="p-3 w-full bg-transparent border-none outline-none text-neutral-400"
+                style="height: 50px;" placeholder="Search...">
+            <button
+                class="bg-[#006dff] border-none text-white px-5 text-lg rounded-r cursor-pointer transition-all duration-400"
+                style="height: 50px;">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    
+        <div class="flex items-center">
+            <button id="cartButton"
+                class="text-white bg-gray-700 hover:bg-gray-800 w-10 h-10 rounded-full flex items-center justify-center focus:outline-none relative mr-2">
+                <i class="bi bi-cart-fill"></i>
+                <span id="cartItemCount"
+                    class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs transition-all duration-300 transform scale-0">0</span>
+            </button>
+            <button id="userButton"
+                class="text-white bg-[#006dff] hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center focus:outline-none relative">
+                <i class="bi bi-person-fill"></i>
+            </button>
+        </div>
+
+        <div id="cartDropdown"
+    class="hidden absolute right-16 top-16 w-72 bg-white rounded-md shadow-lg z-20 transition-all duration-300 opacity-0 transform -translate-y-2">
+    <div class="p-4">
+        <h3 class="text-lg font-semibold mb-2">Meu Carrinho</h3>
+        <div id="cartItems" class="mb-4 max-h-60 overflow-y-auto">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="flex justify-between items-center">
+            <span class="font-semibold">Total:</span>
+            <span id="cartTotal">R$0.00</span>
+        </div>
+        <button class="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
+            Comprar
+        </button>
+    </div>
+</div>
+
+
+<div id="userDropdown"
+    class="hidden absolute right-4 top-16 w-48  bg-[#121214] rounded-md shadow-lg z-20 transition-all duration-300 opacity-0 transform -translate-y-2">
+    <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 flex items-center">
+        <i class="bi bi-person mr-2"></i> Perfil
+    </a>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 flex items-center">
+        <i class="bi bi-gear mr-2"></i> Conta
+    </a>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 flex items-center">
+        <i class="bi bi-sliders mr-2"></i> Configurações
+    </a>
+    <a href="../models/logout.php" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-800 flex items-center">
+        <i class="bi bi-box-arrow-right mr-2"></i> Sair
+    </a>
+</div>
+
+<div id="sidebarDropdown" class="hidden fixed left-4 top-16 w-48 bg-[#121214] rounded-md shadow-lg z-20 transition-all duration-300 opacity-0 transform -translate-y-2">
+    <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center">
+        <i class="bi bi-house mr-2"></i> Home
+    </a>
+    <a href="/loja" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center">
+        <i class="bi bi-cart mr-2"></i> loja
+    </a>
+    <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center">
+        <i class="bi bi-calendar-event mr-2"></i> Events
+    </a>
+    <a href="#" class="block px-4 py-2 text-sm text-white hover:bg-gray-700 flex items-center">
+        <i class="bi bi-chat-dots mr-2"></i> Forum
+    </a>
+</div>
+
+    </nav>
+    <div class="max-w-7xl mx-auto p-4">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Left Column - Images -->
+                <div class="space-y-4">
+                    <div class="border rounded-lg p-4">
+                        <img src="../Img/i12.png" alt="Árvore de Natal" class="w-full h-auto object-contain"/>
+                    </div>
+                    <div class="grid grid-cols-5 gap-2">
+                        <img src="../Img/i12.png" alt="Thumbnail 1" class="border rounded cursor-pointer hover:border-blue-500"/>
+                        <img src="../Img/i12.png" alt="Thumbnail 2" class="border rounded cursor-pointer hover:border-blue-500"/>
+                        <img src="../Img/i12.png" alt="Thumbnail 3" class="border rounded cursor-pointer hover:border-blue-500"/>
+                        <img src="../Img/i12.png" alt="Thumbnail 4" class="border rounded cursor-pointer hover:border-blue-500"/>
+                        <img src="../Img/i12.png" alt="Thumbnail 5" class="border rounded cursor-pointer hover:border-blue-500"/>
+                    </div>
+                </div>
+
+                <!-- Right Column - Product Info -->
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-gray-500">Novo</span>
+                            <span class="text-gray-500">|</span>
+                            <span class="text-gray-500">+1000 vendidos</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm">MAIS VENDIDO</span>
+                            <span class="text-blue-500 text-sm">5° em Árvores de Natal</span>
+                        </div>
+                        <h1 class="text-2xl font-medium">Fone Bluetooth TWS i12</h1>
+                        <div class="flex items-center space-x-2">
+                            <div class="flex text-yellow-400">
+                                ★★★★½
+                            </div>
+                            <span class="text-gray-500">(82)</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="text-3xl font-medium">R$ 49,90</div>
+                        <div class="text-sm text-gray-600">em 12x R$ 4,15</div>
+                        <button class="text-blue-500 text-sm">Ver os meios de pagamento</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-gray-700">Cor: </span>
+                            <span class="font-medium">Verde - A0718H</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="font-medium">O que você precisa saber sobre este produto</h3>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                                <li>Altura: 180 cm</li>
+                                <li>Possui 834 ramos</li>
+                                <li>Largura máxima: 110cm</li>
+                                <li>Materiais: ferro</li>
+                            </ul>
+                        </div>
+
+                        <button class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
+                            Comprar agora
+                        </button>
+                        <button  onclick="addToCart({id: 1, name: 'Fone Bluetooth TWS i12', price: 49.90, image: 'https://via.placeholder.com/300x200'})" class="w-full bg-blue-100 text-blue-500 py-3 rounded-lg hover:bg-blue-200">
+                            Adicionar ao carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const userButton = document.getElementById('userButton');
+    const userDropdown = document.getElementById('userDropdown');
+    const toggleSidebar = document.getElementById('toggleSidebar');
+    const sidebarDropdown = document.getElementById('sidebarDropdown');
+    const cartButton = document.getElementById('cartButton');
+    const cartDropdown = document.getElementById('cartDropdown');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const cartItemCount = document.getElementById('cartItemCount');
+
+    function toggleDropdown(dropdown) {
+        dropdown.classList.toggle('hidden');
+        setTimeout(() => {
+            dropdown.classList.toggle('opacity-0');
+            dropdown.classList.toggle('-translate-y-2');
+        }, 10);
+    }
+
+    userButton.addEventListener('click', () => {
+        toggleDropdown(userDropdown);
+        cartDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        sidebarDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        toggleSidebar.classList.remove('change');
+    });
+
+    toggleSidebar.addEventListener('click', () => {
+        toggleDropdown(sidebarDropdown);
+        userDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        cartDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        toggleSidebar.classList.toggle('change');
+    });
+
+    cartButton.addEventListener('click', () => {
+        toggleDropdown(cartDropdown);
+        userDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        sidebarDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        toggleSidebar.classList.remove('change');
+    });
+
+    searchButton.addEventListener('click', () => {
+        performSearch();
+    });
+
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    // Close dropdowns when clicking outside
+    window.addEventListener('click', (e) => {
+        if (!userButton.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        }
+        if (!toggleSidebar.contains(e.target) && !sidebarDropdown.contains(e.target)) {
+            sidebarDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+            toggleSidebar.classList.remove('change');
+        }
+        if (!cartButton.contains(e.target) && !cartDropdown.contains(e.target)) {
+            cartDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        }
+    });
+
+    function performSearch() {
+        const searchTerm = searchInput.value;
+        console.log('Searching for:', searchTerm);
+        // Implement your search functionality here
+    }
+});
+
+// Cart functionality
+let cart = [];
+
+function loadCartFromLocalStorage() {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        updateCartDisplay();
+    }
+}
+
+function addToCart(item) {
+    const existingItem = cart.find(cartItem => cartItem.id === item.id);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...item,
+            quantity: 1
+        });
+    }
+    updateCartDisplay();
+    saveCartToLocalStorage();
+}
+
+function removeFromCart(itemId) {
+    const index = cart.findIndex(item => item.id === itemId);
+    if (index !== -1) {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+        } else {
+            cart.splice(index, 1);
+        }
+        updateCartDisplay();
+        saveCartToLocalStorage();
+    }
+}
+
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartItemCount = document.getElementById('cartItemCount');
+
+    cartItems.innerHTML = '';
+    let total = 0;
+    let itemCount = 0;
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('flex', 'items-center', 'mb-2', 'pb-2', 'border-b');
+        itemElement.innerHTML = `
+    <img src="${item.image}" alt="${item.name}" class="w-10 h-10 object-cover mr-2">
+    <div class="flex-1">
+        <div class="font-semibold">${item.name}</div>
+        <div class="text-sm text-gray-600">$${item.price.toFixed(2)} x ${item.quantity}</div>
+    </div>
+    <div class="flex items-center">
+        <div class="mr-2">$${(item.price * item.quantity).toFixed(2)}</div>
+        <button onclick="removeFromCart(${item.id})" class="remove-item text-gray-500 hover:text-red-500">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+`;
+        cartItems.appendChild(itemElement);
+        total += item.price * item.quantity;
+        itemCount += item.quantity;
+    });
+
+    cartTotal.textContent = 'R$' + total.toFixed(2);
+    cartItemCount.textContent = itemCount;
+    cartItemCount.classList.toggle('scale-0', itemCount === 0);
+}
+
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+document.addEventListener('DOMContentLoaded', (event) => {
+
+const toggleSidebar = document.getElementById('toggleSidebar');
+const sidebarDropdown = document.getElementById('sidebarDropdown');
+
+function toggleDropdown(dropdown) {
+    // Primeiro, removemos ou adicionamos a classe 'hidden' imediatamente
+    dropdown.classList.toggle('hidden');
+
+    // Em seguida, aguardamos um repaint antes de alternar opacidade e transição
+    setTimeout(() => {
+        dropdown.classList.toggle('opacity-0');
+        dropdown.classList.toggle('-translate-y-2');
+    }, 10); // Esse atraso pequeno ajuda a garantir o efeito de transição suave
+}
+
+toggleSidebar.addEventListener('click', () => {
+    toggleDropdown(sidebarDropdown);
+
+    // Certifique-se de ocultar outros dropdowns
+    toggleSidebar.classList.toggle('change');
+});
+
+// Fechar dropdowns ao clicar fora deles
+window.addEventListener('click', (e) => {
+    if (!toggleSidebar.contains(e.target) && !sidebarDropdown.contains(e.target)) {
+        sidebarDropdown.classList.add('hidden', 'opacity-0', '-translate-y-2');
+        toggleSidebar.classList.remove('change');
+    }
+});
+
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            
+            let currentIndex = 0;
+            const itemWidth = 20; // 20% por item
+            const itemsPerView = 5;
+            const maxIndex = items.length - itemsPerView;
+
+            function updateCarousel() {
+                const offset = -currentIndex * itemWidth;
+                track.style.transform = `translateX(${offset}%)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Inicializar carrossel
+            updateCarousel();
+        });
+
+    </script>
+</body>
+</html>
